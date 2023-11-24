@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model employee {
+  id_employee Int    @id @default(autoincrement())
+  nama        String @unique(map: "nama") @db.VarChar(255)
+  job         String @db.VarChar(255)
+  salary      Int
+}
+
+model manager {
+  id_manager Int    @id @default(autoincrement())
+  nama       String @db.VarChar(255)
+  job        String @db.VarChar(255)
+}
+
+model orders {
+  id_orders  Int @id @default(autoincrement())
+  id_product Int
+  price      Int
+}
+
+model products {
+  id_product Int    @id @default(autoincrement())
+  name       String @db.VarChar(255)
+}
+
+model students {
+  id    Int    @id @default(autoincrement())
+  name  String @db.VarChar(255)
+  grade Int
+}
